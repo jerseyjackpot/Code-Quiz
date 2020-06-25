@@ -1,3 +1,41 @@
+var minutesDisplay = document.querySelector("#minutes");
+var secondsDisplay = document.querySelector("#seconds");
+var startButton = document.querySelector("#start")
+
+var secondsElapsed = 0;
+var totalSeconds = 0;
+var interval; 
+
+//this function runs once a second
+function runClockCb(){
+    console.log("something");
+    
+    secondsElapsed++;
+    console.log(secondsElapsed);
+    
+    //change the display
+    minutesDisplay.textContent = Math.floor((totalSeconds - secondsElapsed) / 60);
+    secondsElapsed.textContent = (totalSeconds - secondsElapsed) % 60;
+}
+
+// GIVEN I am taking a code quiz
+// WHEN I click the start button
+function startTimer(){
+    //write code to start the timer here
+    var minutes = 5;
+    totalSeconds = minutes * 60;
+    //set time using totalSeconds
+    secondsElapsed = 0;
+    if(typeof interval !=="undefined"){
+        // if we have an interval we want to clear it
+        clearInterval(interval);
+    }
+    // keep track of our interval
+    interval = setInterval(runClockCb, 1000);
+}
+
+startButton.addEventListener("click", startTimer);
+// THEN a timer starts and I am presented with a question
 // create a list of questions and answers
 var questionList = [
     {
@@ -85,41 +123,12 @@ function initializeQuestion(){
     buttonD.setAttribute("data-question", questionIndex);
 }
 initializeQuestion();
-var minutesDisplay = document.querySelector("#minutes");
-var secondsDisplay = document.querySelector("#seconds");
-var playButton = document.querySelector("#button");
-var QuestionElements = document.querySelector("#questions");
-var AnswersElements = document.querySelector("#answers");
-var NameInput = document.querySelector("#name");
-var ScoreInput = document.querySelector("#score");
 
-var Index = 0;
-var totalSeconds = 0;
-var secondsElapsed = 0;
-var interval;
-var userAnswer = 0;
-
-
-function runClockCb() {
-    secondsElapsed++;
-    minutesDisplay.textContent = Math.floor((totalSeconds - secondsElapsed) / 60)
-    secondsDisplay.textContent = (totalSeconds - secondsElapsed) % 60;
-
-}
-
-
-function startTimer() {
-
-    var minutes = 10;
-    totalSeconds = minutes * 60;
-    console.log(totalSeconds)
-    secondsElapsed = 0;
-    if (typeof interval !== 'undefined') {
-        (clearInterval(interval));
-    }
-
-    interval = setInterval(runClockCb, 1000);
-    DisplayQuestions();
-}
-
-timerButton.addEventListener("click", startTimer);
+// WHEN I answer a question
+// THEN I am presented with another question
+// WHEN I answer a question incorrectly
+// THEN time is subtracted from the clock
+// WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+// WHEN the game is over
+// THEN I can save my initials and score 

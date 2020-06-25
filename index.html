@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <header>Quiz Time!</header>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col col-md-8 card">
-          <button id="timerButton">Start Quiz</button>
-        </div>
-        </div>
-      </div>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Josefin+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
 
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col col-md-8 card">
-          <div id="question">Question</div>
-          <div>Score <span id="score"></span></div>
-          <div id="answer-buttons" class="btn-grid"></div>
+<body>
+  <header>
+    <h1>Boring quiz with no real topic</h1>
+  </header>
+  <div class="container">
+    <div class="timer">
+      <div id="hand"></div>
+      <div class="controls">
+        <div class="time">
+          <div id="minutes"></div>
+          <div id="seconds"></div>
+          <div class="buttons">
+            <button id="start">Start Quiz</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col col-md-8 card">
-          <h1 id="question" data-question=""></h1>
-          <ul>
-            <li>
-              <button id="button-a" data-answer="a">A:</button>
-              <span id="answer-a"></span>
-            </li>
-            <li>
-              <button id="button-b" data-answer="b">B:</button>
-              <span id="answer-b"></span>
-            </li>
-            <li>
-              <button id="button-c" data-answer="c">C:</button>
-              <span id="answer-c"></span>
-            </li>
-            <li>
-              <button id="button-d" data-answer="d">D:</button>
-              <span id="answer-d"></span>
-            </li>
-          </ul>
-          <p id="score"></p>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 card">
+        <h1 id="question" data-question=""></h1>
+        <ul>
+          <li>
+            <button id="button-a" data-answer="a">A:</button>
+            <span id="answer-a"></span>
+          </li>
+          <li>
+            <button id="button-b" data-answer="b">B:</button>
+            <span id="answer-b"></span>
+          </li>
+          <li>
+            <button id="button-c" data-answer="c">C:</button>
+            <span id="answer-c"></span>
+          </li>
+          <li>
+            <button id="button-d" data-answer="d">D:</button>
+            <span id="answer-d"></span>
+          </li>
+        </ul>
+        <p id="score"></p>
+  <script src="./script.js"></script>
+</body>
+
 </html>
