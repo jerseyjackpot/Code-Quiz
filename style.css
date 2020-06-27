@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: auto;
+    padding: 10%;
+  }
+  
+  .navbar-fixed-bottom {
+    position: static;
+    padding: 5%;
+    padding-bottom: 5%;
+  }
+  
