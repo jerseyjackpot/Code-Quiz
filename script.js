@@ -181,11 +181,13 @@ buttonD.addEventListener("click", buttonHandler);
 
 // THEN I can save my initials and score
 
-//removing elements to show how many correct out of 5
-// function removeElement(questionIndex) {
+//   removing elements to show how many correct out of 5
+//   function removeElement(questionIndex) {
 //   // Removes an element from the document
 //   var element = document.getElementById(questionList);
 //   element.parentNode.removeChild(questionIndex);
 //   element.appendChild(numCorrect);
+//   Inner HTML "You scored (numCorrect) out of 5!";
+
 
     
