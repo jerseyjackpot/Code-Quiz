@@ -16,20 +16,28 @@
 
 <body>
   <nav class="navbar justify-content-center">
-    <h1 class="navbar">Quiz with no real topic :-)</h1>
+    <div class="container-fluid">
+    <div id="highscore" class="nav-item nav-link">View High Scores</div>
+    <h1 id="navbar-title">Quiz with no real topic :-)</h1>
+    <table id=timers style="visibility: hidden;">
+      <tr>
+        <td> Time left in Game: </td>
+          <div id="minutes"></div>
+          <div>:</div>
+          <div id="seconds"></div>
+          <div id="answer"></div>
+      </tr>
+    </table>
+</div>
+</div>
   </nav>
+  <div class="btn btn-secondary btn-lg">
+    <button id="start">Start Quiz</button>
+  </div>
+  <main id="main-content">
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col col-md-8 card">
-        <div class="timer">
-          <div id="hand"></div>
-          <div class="controls">
-            <div class="time">
-              <div id="minutes"></div>
-              <div id="seconds"></div>
-              <div class="buttons">
-                <button id="start">Start Quiz</button>
-              </div>
             </div>
           </div>
         </div>
@@ -59,7 +67,7 @@
             <span id="answer-d"></span>
           </li>
         </ul>
-        <p id="score"></p>
+      </main>
         <nav class="navbar navbar-light fixed-bottom justify-content-center" style="background-color: #7fffd4">
           <div class="footer-text">Made by Jackpot!</div>
         </nav>
