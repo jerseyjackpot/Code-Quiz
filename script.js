@@ -131,8 +131,8 @@ function buttonHandler(event) {
       numCorrect++;
       answer.textContent = " ";
       // WHEN all questions are answered, stop the timer
-      if (questionList === undefined) {
-        stopTimer(timerID);
+      if (typeof(question) !="undefined") {
+        clearInterval;
       } else {
         answer.textContent = " ";
         initializeQuestion();
