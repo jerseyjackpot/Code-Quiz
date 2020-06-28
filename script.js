@@ -2,7 +2,7 @@ var minutesDisplay = document.querySelector("#minutes");
 var secondsDisplay = document.querySelector("#seconds");
 var startButton = document.querySelector("#start");
 var mainContent = document.querySelector("#main-content");
-var points = document.querySelector(".points");
+var answer = document.querySelector("answer");
 var secondsElapsed = 0;
 var totalSeconds = 0;
 var interval;
@@ -105,7 +105,7 @@ var buttonA = document.body.querySelector("#button-a");
 var buttonB = document.body.querySelector("#button-b");
 var buttonC = document.body.querySelector("#button-c");
 var buttonD = document.body.querySelector("#button-d");
-var points = document.body.querySelector("#answer");
+var answer = document.body.querySelector("#answer");
 var highscoreDiv = document.querySelector("#highscore");
 
 var questionIndex = 0;
@@ -128,11 +128,12 @@ function buttonHandler(event) {
     answer.textContent = "You got it correct";
     setTimeout(function () {
       questionIndex++;
-
+      answer.textContent = " ";
       // WHEN all questions are answered, stop the timer
       if (questionList === undefined) {
         stopTimer(timerID);
       } else {
+        answer.textContent = " ";
         initializeQuestion();
       }
     }, 3000);
@@ -145,6 +146,7 @@ function buttonHandler(event) {
     setTimeout(function () {
       questionIndex++;
       totalSeconds -= 60;
+      answer.textContent = " ";
       initializeQuestion();
     }, 3000);
   }
@@ -179,12 +181,13 @@ buttonD.addEventListener("click", buttonHandler);
 // THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and score
-var highScore ={
-    "name":" ",
-    "highScore":" ",
-};
-localStorage.setItem("user", JSON.stringify("user"));
-localStorage.setItem ("highScore", JSON.stringify("highScore"));
-var points = JSON.parse(localStorage.getItem("highScore"));
-    pointsNameSpan.textContent = highScore.Name;
+// var highScore ={
+//     "user":" ",
+//     "score":" ",
+// };
+
+// localStorage.setItem("user", JSON.stringify("user"));
+// localStorage.setItem ("score", JSON.stringify("score"));
+// var score = JSON.parse(localStorage.getItem("highScore"));
+//     scoreNameSpan.textContent = highScore.Name;
     
