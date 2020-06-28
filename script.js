@@ -128,6 +128,7 @@ function buttonHandler(event) {
     answer.textContent = "You got it correct";
     setTimeout(function () {
       questionIndex++;
+      numCorrect++;
       answer.textContent = " ";
       // WHEN all questions are answered, stop the timer
       if (questionList === undefined) {
@@ -178,16 +179,13 @@ buttonB.addEventListener("click", buttonHandler);
 buttonC.addEventListener("click", buttonHandler);
 buttonD.addEventListener("click", buttonHandler);
 
-// THEN the game is over
-// WHEN the game is over
 // THEN I can save my initials and score
-// var highScore ={
-//     "user":" ",
-//     "score":" ",
-// };
 
-// localStorage.setItem("user", JSON.stringify("user"));
-// localStorage.setItem ("score", JSON.stringify("score"));
-// var score = JSON.parse(localStorage.getItem("highScore"));
-//     scoreNameSpan.textContent = highScore.Name;
+//removing elements to show how many correct out of 5
+// function removeElement(questionIndex) {
+//   // Removes an element from the document
+//   var element = document.getElementById(questionList);
+//   element.parentNode.removeChild(questionIndex);
+//   element.appendChild(numCorrect);
+
     
