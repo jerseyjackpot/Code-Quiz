@@ -3,6 +3,7 @@ var secondsDisplay = document.querySelector("#seconds");
 var startButton = document.querySelector("#start");
 var mainContent = document.querySelector("#main-content");
 var answer = document.querySelector("answer");
+var submitButton = document.querySelector("button.submitButton");
 var secondsElapsed = 0;
 var totalSeconds = 0;
 var interval;
@@ -11,6 +12,7 @@ var timerID;
 
 //this function runs once a second
 function runClockCb() {
+
   //seconds in console
   secondsElapsed++;
   console.log(secondsElapsed);
@@ -19,34 +21,37 @@ function runClockCb() {
   minutesDisplay.textContent = Math.floor((totalSeconds - secondsElapsed) / 60);
   secondsDisplay.textContent = (totalSeconds - secondsElapsed) % 60;
 
+  //stop clock when it hits zero
   if (totalSeconds === 0) {
     clearTimeout(timerID);
-  };
-
+  }
 }
 
-// GIVEN I am taking a code quiz
 // WHEN I click the start button
 function startTimer() {
+  
   //code to start the timer here
   document.getElementById("main-content").style.display = "block";
   document.getElementById("start").style.display = "none";
   var minutes = 5;
   totalSeconds = minutes * 60;
+  
   //set time using totalSeconds
   secondsElapsed = 0;
   if (typeof interval !== "undefined") {
+    
     // if we have an interval we want to clear it
     clearInterval(interval);
   }
+  
   // keep track of our interval
   timerID = setInterval(runClockCb, 1000);
 }
 
+//event listener for start button
 startButton.addEventListener("click", startTimer);
 
-// THEN a timer starts and I am presented with a question
-// create a list of questions and answers
+// list of questions and answers
 var questionList = [
   {
     question: "What happens once every 4 years?",
@@ -95,6 +100,7 @@ var questionList = [
   },
 ];
 
+//tags for query selectors
 var questionTag = document.body.querySelector("#question");
 var answerTagA = document.body.querySelector("#answer-a");
 var answerTagB = document.body.querySelector("#answer-b");
@@ -107,61 +113,87 @@ var buttonC = document.body.querySelector("#button-c");
 var buttonD = document.body.querySelector("#button-d");
 var answer = document.body.querySelector("#answer");
 var highscoreDiv = document.querySelector("#highscore");
+var resultsScore = document.body.querySelector("results");
 
+//variables for timers
 var questionIndex = 0;
 var totalSeconds = 0;
 var secondsElapsed = 0;
 var interval;
 var userAnswer = 0;
-var stopTimer = clearInterval(interval);
+var stopTimer = null;
 
+//button handler for answering questions
 function buttonHandler(event) {
   var button = event.target;
-  var userAnswer = button.getAttribute("data-answer");
-  var questionId = parseInt(button.getAttribute("data-question"));
-  questionList[questionId]["userAnswer"] = userAnswer;
-
-  if (
-    questionList[questionId]["userAnswer"] ===
-    questionList[questionId]["correct"]
-  ) {
-    answer.textContent = "You got it correct";
-    setTimeout(function () {
+  if (!button.disabled) {
+    var userAnswer = button.getAttribute("data-answer");
+    var questionId = parseInt(button.getAttribute("data-question"));
+    questionList[questionId]["userAnswer"] = userAnswer;
+    //to disable buttons between questions
+    buttonA.disabled = true;
+    buttonB.disabled = true;
+    buttonC.disabled = true;
+    buttonD.disabled = true;
+    //if correct answer is selected
+    if (
+      questionList[questionId]["userAnswer"] ===
+      questionList[questionId]["correct"]
+    ) {
+      answer.textContent = "You got it correct";
       questionIndex++;
       numCorrect++;
-      answer.textContent = " ";
       // WHEN all questions are answered, stop the timer
-      if (typeof(question) !="undefined") {
-        clearInterval;
+      if (questionIndex >= questionList.length) {
+        clearInterval(timerID);
+        // show the score
+        console.log("final score " + numCorrect);
+        
       } else {
-        answer.textContent = " ";
-        initializeQuestion();
+        setTimeout(function () {
+          answer.textContent = " ";
+          initializeQuestion();
+        }, 3000);
+        
       }
-    }, 3000);
-  }
+    }
 
-  // WHEN I answer a question incorrectly
-  // THEN time is subtracted from the clock
-  else {
-    answer.textContent = "You got it wrong";
-    setTimeout(function () {
+    // WHEN I answer a question incorrectly
+    // THEN time is subtracted from the clock
+    else {
+      answer.textContent = "You got it wrong";
+      //setTimeout(function () {
       questionIndex++;
       totalSeconds -= 60;
-      answer.textContent = " ";
-      initializeQuestion();
-    }, 3000);
+      //answer.textContent = " ";
+      if (questionIndex >= questionList.length) {
+        clearInterval(timerID);
+        // show the score
+        console.log("final score " + numCorrect);
+        document.getElementById(resultsScore).innerHTML = numCorrect + ' out of ' + questionList.length;
+      } else {
+        setTimeout(function () {
+          answer.textContent = " ";
+          initializeQuestion();
+        }, 3000);
+      }
+    }
   }
 }
 
 // WHEN I answer a question
 // THEN I am presented with another question
-
 function initializeQuestion() {
   console.log(questionList[questionIndex]);
   var wholeObj = questionList[questionIndex];
   var question = wholeObj.question;
   questionTag.textContent = question;
   questionTag.setAttribute("data-question", questionIndex);
+
+  buttonA.disabled = false;
+  buttonB.disabled = false;
+  buttonC.disabled = false;
+  buttonD.disabled = false;
 
   answerTagA.textContent = wholeObj.a;
   answerTagB.textContent = wholeObj.b;
@@ -173,21 +205,8 @@ function initializeQuestion() {
   buttonD.setAttribute("data-question", questionIndex);
 }
 initializeQuestion();
-
+//button handlers for each answer choice
 buttonA.addEventListener("click", buttonHandler);
 buttonB.addEventListener("click", buttonHandler);
 buttonC.addEventListener("click", buttonHandler);
 buttonD.addEventListener("click", buttonHandler);
-
-// THEN I can save my initials and score
-
-//   removing elements to show how many correct out of 5
-//   function removeElement(questionIndex) {
-//   // Removes an element from the document
-//   var element = document.getElementById(questionList);
-//   element.parentNode.removeChild(questionIndex);
-//   element.appendChild(numCorrect);
-//   Inner HTML "You scored (numCorrect) out of 5!";
-
-
-    
