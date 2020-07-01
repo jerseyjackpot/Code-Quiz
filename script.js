@@ -3,7 +3,7 @@ var secondsDisplay = document.querySelector("#seconds");
 var startButton = document.querySelector("#start");
 var mainContent = document.querySelector("#main-content");
 var answer = document.querySelector("answer");
-var submitButton = document.querySelector("button.submitButton");
+
 var secondsElapsed = 0;
 var totalSeconds = 0;
 var interval;
@@ -149,7 +149,7 @@ function buttonHandler(event) {
         
         // show the score
         document.getElementById("scoreInput").style.display = "block";
-        document.getElementById("submit").style.display = "none";
+        document.getElementById("submitButton").style.display = "none";
         console.log("final score " + numCorrect);
           
         
@@ -174,7 +174,7 @@ function buttonHandler(event) {
         clearInterval(timerID);
         // show the score
         document.getElementById("scoreInput").style.display = "block";
-        document.getElementById("submit").style.display = "none";
+        document.getElementById("submitButton").style.display = "none";
         console.log("final score " + numCorrect);
 
       } else {
@@ -216,19 +216,34 @@ buttonA.addEventListener("click", buttonHandler);
 buttonB.addEventListener("click", buttonHandler);
 buttonC.addEventListener("click", buttonHandler);
 buttonD.addEventListener("click", buttonHandler);
-submitButton.addEventListener("click", buttonHandler);
 
 //function that houses object to save high score and initials to local storage
      // object 
-          var scoreInput = {
-            score: numCorrect,
-            initials: initials,
+     var submitButton = document.querySelector("submitButton");
+        var scoreInput = {
+          score: numCorrect,
+          initials: initials,
           }
 //create input for name dynamically
      // get value of input box
-          var initials = document.getElementById.initials.value.trim();
-          var score = numCorrect;
-          scoreList.push(scoreInput);
-          // save to local storage
-          localStorage.setItem("submitButton", JSON.stringify(score));
-          window.location.href="highscore.html";
+     var inputInitials = document.getElementById("initials")
+     function saveScore() {
+       
+     var initials = inputInitials.value.trim();
+     if (initials !== " ") {
+       var scoreList =
+         JSON.parse(window.localStorage.getItem("highscore")) || [];
+     var score = numCorrect;
+     var scoreInput = {
+       score: numCorrect,
+       initials: initials,
+     }
+     scoreList.push(scoreInput);
+     // save to local storage
+     window.localStorage.setItem("highscore", JSON.stringify(scoreList));
+     window.location.href="highscore.html"}
+    }
+    var submitButton = document.querySelector("submitButton");
+    submitButton.addEventListener("click", buttonHandler);
+    
+
