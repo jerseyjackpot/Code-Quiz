@@ -12,7 +12,6 @@ var timerID;
 
 //this function runs once a second
 function runClockCb() {
-
   //seconds in console
   secondsElapsed++;
   console.log(secondsElapsed);
@@ -29,21 +28,19 @@ function runClockCb() {
 
 // WHEN I click the start button
 function startTimer() {
-  
   //code to start the timer here
   document.getElementById("main-content").style.display = "block";
   document.getElementById("start").style.display = "none";
   var minutes = 5;
   totalSeconds = minutes * 60;
-  
+
   //set time using totalSeconds
   secondsElapsed = 0;
   if (typeof interval !== "undefined") {
-    
     // if we have an interval we want to clear it
     clearInterval(interval);
   }
-  
+
   // keep track of our interval
   timerID = setInterval(runClockCb, 1000);
 }
@@ -146,19 +143,16 @@ function buttonHandler(event) {
       // WHEN all questions are answered, stop the timer
       if (questionIndex >= questionList.length) {
         clearInterval(timerID);
-        
+
         // show the score
         document.getElementById("scoreInput").style.display = "block";
-        document.getElementById("submitButton").style.display = "none";
+        // document.getElementById("submitButton").style.display = "none";
         console.log("final score " + numCorrect);
-          
-        
       } else {
         setTimeout(function () {
           answer.textContent = " ";
           initializeQuestion();
         }, 3000);
-        
       }
     }
 
@@ -174,9 +168,8 @@ function buttonHandler(event) {
         clearInterval(timerID);
         // show the score
         document.getElementById("scoreInput").style.display = "block";
-        document.getElementById("submitButton").style.display = "none";
+        // document.getElementById("submitButton").style.display = "none";
         console.log("final score " + numCorrect);
-
       } else {
         setTimeout(function () {
           answer.textContent = " ";
@@ -218,32 +211,29 @@ buttonC.addEventListener("click", buttonHandler);
 buttonD.addEventListener("click", buttonHandler);
 
 //function that houses object to save high score and initials to local storage
-     // object 
-     var submitButton = document.querySelector("submitButton");
-        var scoreInput = {
-          score: numCorrect,
-          initials: initials,
-          }
+// object
+var submitButton = document.querySelector("submitButton");
+var scoreInput = {
+  score: numCorrect,
+  initials: initials,
+};
 //create input for name dynamically
-     // get value of input box
-     var inputInitials = document.getElementById("initials")
-     function saveScore() {
-       
-     var initials = inputInitials.value.trim();
-     if (initials !== " ") {
-       var scoreList =
-         JSON.parse(window.localStorage.getItem("highscore")) || [];
-     var score = numCorrect;
-     var scoreInput = {
-       score: numCorrect,
-       initials: initials,
-     }
-     scoreList.push(scoreInput);
-     // save to local storage
-     window.localStorage.setItem("highscore", JSON.stringify(scoreList));
-     window.location.href="highscore.html"}
-    }
-    var submitButton = document.querySelector("submitButton");
-    submitButton.addEventListener("click", buttonHandler);
-    
-
+// get value of input box
+var inputInitials = document.getElementById("initials");
+function saveScore() {
+  var initials = inputInitials.value.trim();
+  if (initials !== " ") {
+    var scoreList = JSON.parse(window.localStorage.getItem("highscore")) || [];
+    var score = numCorrect;
+    var scoreInput = {
+      score: numCorrect,
+      initials: initials,
+    };
+    scoreList.push(scoreInput);
+    // save to local storage
+    window.localStorage.setItem("highscore", JSON.stringify(scoreList));
+    window.location.href = "highscore.html";
+  }
+}
+var submitButton = document.querySelector("#submitButton");
+submitButton.addEventListener("click", saveScore);
