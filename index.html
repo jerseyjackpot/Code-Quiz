@@ -17,63 +17,66 @@
 <body>
   <nav class="navbar justify-content-center">
     <div class="container-fluid">
-      <a href="scores.html">To Be Updated</a>
-    <div id="results"></div>
-    <h1 id="navbar-title">Astronomy Quiz!</h1>
-    <table id=timers style="visibility: hidden;">
-      <tr>
-        <td> Time left in Game: </td>
+      <a href="highscore.html">See High Scores</a>
+      <div id="results"></div>
+      <h1 id="navbar-title">Astronomy Quiz!</h1>
+      <table id=timers style="visibility: hidden;">
+        <tr>
+          <td> Time left in Game: </td>
           <div id="minutes"></div>
           <div>:</div>
           <div id="seconds"></div>
           <div id="answer"></div>
-          
-      </tr>
-    </table>
-</div>
-</div>
+
+        </tr>
+      </table>
+    </div>
+    </div>
   </nav>
   <div class="btn btn-secondary btn-lg">
     <button id="start">Start Quiz</button>
   </div>
   <main id="main-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col col-md-8 card">
+          <h1 id="question" data-question=""></h1>
+          <ul>
+            <li>
+              <button id="button-a" data-answer="a">A:</button>
+              <span id="answer-a"></span>
+            </li>
+            <li>
+              <button id="button-b" data-answer="b">B:</button>
+              <span id="answer-b"></span>
+            </li>
+            <li>
+              <button id="button-c" data-answer="c">C:</button>
+              <span id="answer-c"></span>
+            </li>
+            <li>
+              <button id="button-d" data-answer="d">D:</button>
+              <span id="answer-d"></span>
+            </li>
+          </ul>
+  </main>
+<div id="scoreInput">
   <div class="container">
     <div class="row">
       <div class="col col-md-8 card">
-            </div>
-          </div>
-        </div>
+        <h1>High Score!</h1>
+        <form id="numCorrect"></form>
+        <form id="initials"></form>
+        <button id="submitButton">Submit</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col col-md-8 card">
-        <h1 id="question" data-question=""></h1>
-        <ul>
-          <li>
-            <button id="button-a" data-answer="a">A:</button>
-            <span id="answer-a"></span>
-          </li>
-          <li>
-            <button id="button-b" data-answer="b">B:</button>
-            <span id="answer-b"></span>
-          </li>
-          <li>
-            <button id="button-c" data-answer="c">C:</button>
-            <span id="answer-c"></span>
-          </li>
-          <li>
-            <button id="button-d" data-answer="d">D:</button>
-            <span id="answer-d"></span>
-          </li>
-        </ul>
-      </main>
-        <nav class="navbar navbar-light fixed-bottom justify-content-center" style="background-color: #7fffd4">
-          <div class="footer-text">Made by Jackpot!</div>
-        </nav>
-        <script src="./script.js"></script>
+  <nav class="navbar navbar-light fixed-bottom justify-content-center" style="background-color: #7fffd4">
+    <div class="footer-text">Made by Jackpot!</div>
+  </nav>
+  <script src="./script.js"></script>
 </body>
 
 </html>

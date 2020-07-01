@@ -146,8 +146,11 @@ function buttonHandler(event) {
       // WHEN all questions are answered, stop the timer
       if (questionIndex >= questionList.length) {
         clearInterval(timerID);
+        
         // show the score
         console.log("final score " + numCorrect);
+        document.getElementById("scoreInput").style.display = "block";
+        document.getElementById("submit").style.display = "none";
         
       } else {
         setTimeout(function () {
@@ -210,3 +213,18 @@ buttonA.addEventListener("click", buttonHandler);
 buttonB.addEventListener("click", buttonHandler);
 buttonC.addEventListener("click", buttonHandler);
 buttonD.addEventListener("click", buttonHandler);
+
+//function that houses object to save high score and initials to local storage
+     // object 
+          var scoreInput = {
+            score: numCorrect,
+            initials: initials,
+          }
+//create input for name dynamically
+     // get value of input box
+          var initials = document.getElementById.initials.value.trim();
+          var scoreList =
+          scoreList.push(scoreInput);
+          // save to local storage
+          localStorage.setItem("scoreList", JSON.stringify(scoreList));
+          window.location.href="highscore.html";

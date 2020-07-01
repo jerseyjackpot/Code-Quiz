@@ -25,3 +25,6 @@ body {
     color: black;
     font-weight: bolder;
   }
+  #scoreInput{
+    display: none;
+  }
