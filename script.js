@@ -53,42 +53,42 @@ startButton.addEventListener("click", startTimer);
 
 // list of questions and answers
 var questionList = [
-  {
-    question: "What happens once every 4 years?",
-    a: "Lunar Eclipse.",
-    b: "Supreme Court Election.",
-    c: "Category 3 Hurricanes.",
-    d: "Leap Day.",
-    correct: "d",
-    userAnswer: null,
-  },
-  {
-    question: "What month is the Vernal Equinox?",
-    a: "February",
-    b: "April",
-    c: "March",
-    d: "July",
-    correct: "c",
-    userAnswer: null,
-  },
-  {
-    question: "How far is the Moon from Earth?",
-    a: "2389 miles",
-    b: "22389 miles",
-    c: "35000 miles",
-    d: "238900 miles",
-    correct: "d",
-    userAnswer: null,
-  },
-  {
-    question: "Jupiter has how many moons?",
-    a: "2",
-    b: "None",
-    c: "79",
-    d: "25",
-    correct: "c",
-    userAnswer: null,
-  },
+  // {
+  //   question: "What happens once every 4 years?",
+  //   a: "Lunar Eclipse.",
+  //   b: "Supreme Court Election.",
+  //   c: "Category 3 Hurricanes.",
+  //   d: "Leap Day.",
+  //   correct: "d",
+  //   userAnswer: null,
+  // },
+  // {
+  //   question: "What month is the Vernal Equinox?",
+  //   a: "February",
+  //   b: "April",
+  //   c: "March",
+  //   d: "July",
+  //   correct: "c",
+  //   userAnswer: null,
+  // },
+  // {
+  //   question: "How far is the Moon from Earth?",
+  //   a: "2389 miles",
+  //   b: "22389 miles",
+  //   c: "35000 miles",
+  //   d: "238900 miles",
+  //   correct: "d",
+  //   userAnswer: null,
+  // },
+  // {
+  //   question: "Jupiter has how many moons?",
+  //   a: "2",
+  //   b: "None",
+  //   c: "79",
+  //   d: "25",
+  //   correct: "c",
+  //   userAnswer: null,
+  // },
   {
     question: "What is the Sun mostly made of?",
     a: "Hydrogen",
@@ -148,9 +148,10 @@ function buttonHandler(event) {
         clearInterval(timerID);
         
         // show the score
-        console.log("final score " + numCorrect);
         document.getElementById("scoreInput").style.display = "block";
         document.getElementById("submit").style.display = "none";
+        console.log("final score " + numCorrect);
+          
         
       } else {
         setTimeout(function () {
@@ -172,8 +173,10 @@ function buttonHandler(event) {
       if (questionIndex >= questionList.length) {
         clearInterval(timerID);
         // show the score
+        document.getElementById("scoreInput").style.display = "block";
+        document.getElementById("submit").style.display = "none";
         console.log("final score " + numCorrect);
-        document.getElementById(resultsScore).innerHTML = numCorrect + ' out of ' + questionList.length;
+
       } else {
         setTimeout(function () {
           answer.textContent = " ";
@@ -213,6 +216,7 @@ buttonA.addEventListener("click", buttonHandler);
 buttonB.addEventListener("click", buttonHandler);
 buttonC.addEventListener("click", buttonHandler);
 buttonD.addEventListener("click", buttonHandler);
+submitButton.addEventListener("click", buttonHandler);
 
 //function that houses object to save high score and initials to local storage
      // object 
@@ -223,8 +227,8 @@ buttonD.addEventListener("click", buttonHandler);
 //create input for name dynamically
      // get value of input box
           var initials = document.getElementById.initials.value.trim();
-          var scoreList = numCorrect;
+          var score = numCorrect;
           scoreList.push(scoreInput);
           // save to local storage
-          localStorage.setItem("scoreList", JSON.stringify(scoreList));
+          localStorage.setItem("submitButton", JSON.stringify(score));
           window.location.href="highscore.html";
