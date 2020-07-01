@@ -223,7 +223,7 @@ buttonD.addEventListener("click", buttonHandler);
 //create input for name dynamically
      // get value of input box
           var initials = document.getElementById.initials.value.trim();
-          var scoreList =
+          var scoreList = numCorrect;
           scoreList.push(scoreInput);
           // save to local storage
           localStorage.setItem("scoreList", JSON.stringify(scoreList));
