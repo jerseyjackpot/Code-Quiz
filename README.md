@@ -22,4 +22,4 @@ Contains centering and styling for html user input features
 -----
 One Javascript Page
 script.js
-Contains questions and answers, query selectors, timer, and scoring (in progress, final score will show in console.log)
+Contains questions and answers, query selectors, timer, and scoring

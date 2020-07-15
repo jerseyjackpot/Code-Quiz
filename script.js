@@ -9,6 +9,11 @@ var totalSeconds = 0;
 var interval;
 var numCorrect = 0;
 var timerID;
+var submitButton = document.querySelector("submitButton");
+var scoreInput = {
+  score: numCorrect,
+  initials: initials,
+};
 
 //this function runs once a second
 function runClockCb() {
@@ -50,42 +55,42 @@ startButton.addEventListener("click", startTimer);
 
 // list of questions and answers
 var questionList = [
-  // {
-  //   question: "What happens once every 4 years?",
-  //   a: "Lunar Eclipse.",
-  //   b: "Supreme Court Election.",
-  //   c: "Category 3 Hurricanes.",
-  //   d: "Leap Day.",
-  //   correct: "d",
-  //   userAnswer: null,
-  // },
-  // {
-  //   question: "What month is the Vernal Equinox?",
-  //   a: "February",
-  //   b: "April",
-  //   c: "March",
-  //   d: "July",
-  //   correct: "c",
-  //   userAnswer: null,
-  // },
-  // {
-  //   question: "How far is the Moon from Earth?",
-  //   a: "2389 miles",
-  //   b: "22389 miles",
-  //   c: "35000 miles",
-  //   d: "238900 miles",
-  //   correct: "d",
-  //   userAnswer: null,
-  // },
-  // {
-  //   question: "Jupiter has how many moons?",
-  //   a: "2",
-  //   b: "None",
-  //   c: "79",
-  //   d: "25",
-  //   correct: "c",
-  //   userAnswer: null,
-  // },
+  {
+    question: "What happens once every 4 years?",
+    a: "Lunar Eclipse.",
+    b: "Supreme Court Election.",
+    c: "Category 3 Hurricanes.",
+    d: "Leap Day.",
+    correct: "d",
+    userAnswer: null,
+  },
+  {
+    question: "What month is the Vernal Equinox?",
+    a: "February",
+    b: "April",
+    c: "March",
+    d: "July",
+    correct: "c",
+    userAnswer: null,
+  },
+  {
+    question: "How far is the Moon from Earth?",
+    a: "2389 miles",
+    b: "22389 miles",
+    c: "35000 miles",
+    d: "238900 miles",
+    correct: "d",
+    userAnswer: null,
+  },
+  {
+    question: "Jupiter has how many moons?",
+    a: "2",
+    b: "None",
+    c: "79",
+    d: "25",
+    correct: "c",
+    userAnswer: null,
+  },
   {
     question: "What is the Sun mostly made of?",
     a: "Hydrogen",
@@ -140,22 +145,7 @@ function buttonHandler(event) {
       answer.textContent = "You got it correct";
       questionIndex++;
       numCorrect++;
-      // WHEN all questions are answered, stop the timer
-      if (questionIndex >= questionList.length) {
-        clearInterval(timerID);
-
-        // show the score
-        document.getElementById("scoreInput").style.display = "block";
-        // document.getElementById("submitButton").style.display = "none";
-        console.log("final score " + numCorrect);
-      } else {
-        setTimeout(function () {
-          answer.textContent = " ";
-          initializeQuestion();
-        }, 3000);
-      }
     }
-
     // WHEN I answer a question incorrectly
     // THEN time is subtracted from the clock
     else {
@@ -163,22 +153,40 @@ function buttonHandler(event) {
       //setTimeout(function () {
       questionIndex++;
       totalSeconds -= 60;
-      //answer.textContent = " ";
-      if (questionIndex >= questionList.length) {
-        clearInterval(timerID);
-        // show the score
-        document.getElementById("scoreInput").style.display = "block";
-        // document.getElementById("submitButton").style.display = "none";
-        console.log("final score " + numCorrect);
-      } else {
-        setTimeout(function () {
-          answer.textContent = " ";
-          initializeQuestion();
-        }, 3000);
-      }
+    }
+
+    // WHEN all questions are answered, stop the timer
+    if (questionIndex >= questionList.length) {
+      console.log("condition hit!");
+      clearInterval(timerID);
+
+      // show the score
+      document.getElementById("scoreInput").style.display = "block";
+      // document.getElementById("submitButton").style.display = "none";
+      console.log("final score " + numCorrect);
+      document.getElementById("gameOverScore").innerText =
+        "You got " + numCorrect + " out of 5!";
+    } else {
+      setTimeout(function () {
+        answer.textContent = " ";
+        initializeQuestion();
+      }, 3000);
     }
   }
 }
+// answer.textContent = " ";
+// if (questionIndex >= questionList.length) {
+// clearInterval(timerID);
+// show the score
+// document.getElementById("scoreInput").style.display = "block";
+// document.getElementById("submitButton").style.display = "none";
+// console.log("final score " + numCorrect);
+// document.getElementById("gameOverScore").innerText="You got " + numCorrect + " out of 5!";
+// } else {
+//   setTimeout(function () {
+//     answer.textContent = " ";
+//     initializeQuestion();
+//   }, 3000);
 
 // WHEN I answer a question
 // THEN I am presented with another question
@@ -212,13 +220,10 @@ buttonD.addEventListener("click", buttonHandler);
 
 //function that houses object to save high score and initials to local storage
 // object
-var submitButton = document.querySelector("submitButton");
-var scoreInput = {
-  score: numCorrect,
-  initials: initials,
-};
+
 //create input for name dynamically
 // get value of input box
+
 var inputInitials = document.getElementById("initials");
 function saveScore() {
   var initials = inputInitials.value.trim();
